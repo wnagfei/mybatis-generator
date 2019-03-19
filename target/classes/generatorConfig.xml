@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="D:/WorkSpace/mybatis-generator/mybatis-generator/lib/postgresql-9.4.1208.jar" />
+    <classPathEntry location="D:/WorkSpace/mybatis-generator/mybatis-generator/lib/mysql-connector-java-5.1.38.jar" />
+	<context id="testTables" targetRuntime="MyBatis3">
+
+
+
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 数据库相关配置 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://10.170.130.112:3306/studio0727?useUnicode=true"
+			userId="root" password="111111">
+		</jdbcConnection>
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 
+			和 NUMERIC 类型解析为java.math.BigDecimal -->
+		<!-- <javaTypeResolver type="com.uccc.mybatisgenerator.JavaTypeResolver"> -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- targetProject:生成PO类的位置 -->
+		<javaModelGenerator targetPackage="com.golaxy.bda.persistence.entity"
+			targetProject="src/main/java/">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- targetProject:mapper映射文件生成的位置 如果maven工程只是单独的一个工程，targetProject="src/main/java" 
+			若果maven工程是分模块的工程，targetProject="所属模块的名称"，例如： targetProject="ecps-manager-mapper"，下同 -->
+		<sqlMapGenerator targetPackage="com.golaxy.bda.persistence.mapper"
+			targetProject="src/main/java/">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- targetPackage：mapper接口生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.golaxy.bda.persistence.mapper" targetProject="src/main/java/">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<table tableName="sysuser">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true" />
+		</table>
+		<table tableName="role">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true" />
+		</table>
+		<table tableName="user_ref_role">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+
+
+
+
+
+
+		<!--
+		<table tableName="xin_tenant" >
+			<generatedKey column="id" sqlStatement="JDBC" identity="true" />
+		</table>
+		-->
+	</context>
+</generatorConfiguration>
